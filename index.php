@@ -1,4 +1,4 @@
-<?php include 'path.php'?>
+<?php include 'path.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="wrapper">
-    
+
     <main class="main">
         <div class="login_wrap">
             <form action="" class="login">
@@ -15,7 +15,7 @@
                 <div class="error_msg"></div>
                 <div class="wrap_input">
                     <label>
-                        ОГРОМНАЯ БАЛДА:
+                        Логин:
                         <input type="text">
                     </label>
                     <label>
@@ -27,14 +27,8 @@
             </form>
         </div>
     </main>
-    <footer>
+    <?php include SITE_ROOT . '/app/include/footer.php' ?>
 
-<div class="container"></div>
-    <span>Create ya</span>
-</footer>
-    <script src="js/app.min.js"></script>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/JQuery.js"></script>
 </div>
 </body>
 </html>
