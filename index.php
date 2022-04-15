@@ -15,7 +15,7 @@
                 <div class="error_msg"></div>
                 <div class="wrap_input">
                     <label>
-                        Логин:
+                        ОГРОМНАЯ БАЛДА:
                         <input type="text">
                     </label>
                     <label>
