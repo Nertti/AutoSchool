@@ -142,10 +142,15 @@ h6 {
           justify-content: flex-start;
   overflow: hidden;
   background-color: #ffffff;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 18px;
   font-style: normal;
+  font-stretch: ultra-expanded;
+  letter-spacing: 0.9px;
   line-height: 2rem;
+}
+
+.wrapper * {
   color: #4c4c4c;
 }
 
@@ -157,8 +162,20 @@ h6 {
   height: auto;
 }
 
+.container.S {
+  max-width: 700px;
+}
+
+.container.M {
+  max-width: 900px;
+}
+
+.container.L {
+  max-width: 1000px;
+}
+
 main {
-  padding: 60px 0 0;
+  padding: 80px 0 0;
   height: 100%;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -178,7 +195,7 @@ a {
 }
 
 a:hover {
-  color: blueviolet;
+  color: indianred;
 }
 
 button {
@@ -219,7 +236,6 @@ button {
   top: 0;
   left: 0;
   width: 100%;
-  border-bottom: 1px solid #4c4c4c;
 }
 
 .nav:before {
@@ -229,7 +245,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+  background-color: rgba(245, 223, 223, 0.8);
   z-index: 3;
 }
 
@@ -261,6 +277,10 @@ button {
           align-items: center;
 }
 
+.nav .nav__head .logo .redLogo {
+  color: indianred;
+}
+
 .nav .nav__head .mgt {
   z-index: 3;
   padding-right: 15px;
@@ -286,7 +306,7 @@ button {
 }
 
 .nav .nav__head .nav__menu {
-  max-width: 700px;
+  max-width: 800px;
   width: 100%;
   position: relative;
   z-index: 3;
@@ -441,8 +461,15 @@ body.lock {
 
 .login_wrap .login .login-btn {
   background: #cecece;
-  margin: 20px 0 0;
+  margin: 20px auto 0;
   padding: 5px 0;
+  width: 100%;
+}
+
+.login_wrap .login .login-btn:hover {
+  margin: 15px auto 0;
+  padding: 10px 0;
+  width: 90%;
 }
 
 .login_wrap .login .title {
@@ -475,6 +502,115 @@ body.lock {
   font-size: 25px;
   padding: 0 30px 5px 0;
   margin: 10px 0;
+}
+
+.table_page .title {
+  padding: 30px 0;
+}
+
+.table_page .search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 30px;
+}
+
+.table_page .search * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.table_page .search input {
+  border-bottom: 1px solid #4c4c4c;
+  width: 300px;
+  padding: 0 0 0 5px;
+}
+
+.table_page .search .control {
+  width: 100%;
+  max-width: 200px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.table_page .table a,
+.table_page .table span {
+  font-size: 25px;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+}
+
+.table_page .table .left-border {
+  border-left: 1px solid #4c4c4c;
+}
+
+.table_page .table .number {
+  max-width: 50px;
+}
+
+.table_page .table .surname {
+  max-width: 300px;
+  text-align: left;
+}
+
+.table_page .table .group {
+  max-width: 100px;
+}
+
+.table_page .table .phone {
+  max-width: 200px;
+}
+
+.table_page .table .control {
+  max-width: 300px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-right: 10px;
+  margin-left: auto;
+}
+
+.table_page .table .control a {
+  width: 120px;
+  text-align: center;
+}
+
+.table_page .table .control .add:hover {
+  color: #32de5a;
+}
+
+.table_page .table .control .edit:hover {
+  color: #e3d54e;
+}
+
+.table_page .table .control .delete:hover {
+  color: #e15353;
+}
+
+.table_page .table .head_table,
+.table_page .table .row_table {
+  max-width: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid #4c4c4c;
+}
+
+.table_page .table .body_table {
+  overflow: auto;
+  height: 550px;
+}
+
+.table_page .table .body_table * {
+  font-weight: normal;
 }
 
 @media screen and (max-width: 1220px) {

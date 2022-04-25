@@ -7,31 +7,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <header>
-    <div class="nav lock-padding">
-        <div class="container">
-            <div class="nav__head">
-                <div class="logo">
-                    <div onclick="location.href='index.html'" class="nav__logo">
-                        Автошкола
-                    </div>
-                </div>
-                <div class="nav__burger">
-                    <span></span>
-                </div>
-                <div class="nav__menu">
-                    <ul class="nav__list">
-                        <li><a href=".html">Учащиеся</a></li>
-                        <li><a href=".html">Преподаватели</a></li>
-                        <li><a href=".html">Группы</a></li>
-                        <li><a href=".html">Оплата</a></li>
-                        <li><a href=".html">Расписание</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+    <?php include SITE_ROOT . '/app/include/header.php' ?>
     <main class="main">
 
     </main>

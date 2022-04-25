@@ -31,10 +31,7 @@ function selectOne($table, $params = [])
     if (!empty($params)) {
         $i = 0;
         foreach ($params as $key => $value) {
-
-            if (!is_numeric($value)) {
-                $value = "'" . $value . "'";
-            }
+            $value = "'" . $value . "'";
             if ($i === 0) {
                 $sql = $sql . " WHERE $key = $value";
             } else {
@@ -61,10 +58,7 @@ function selectALL($table, $params = [])
     if (!empty($params)) {
         $i = 0;
         foreach ($params as $key => $value) {
-
-            if (!is_numeric($value)) {
-                $value = "'" . $value . "'";
-            }
+            $value = "'" . $value . "'";
             if ($i === 0) {
                 $sql = $sql . " WHERE $key = $value";
             } else {
@@ -90,10 +84,7 @@ function selectOrder($table, $sort_sql, $params = [])
     if (!empty($params)) {
         $i = 0;
         foreach ($params as $key => $value) {
-
-            if (!is_numeric($value)) {
-                $value = "'" . $value . "'";
-            }
+            $value = "'" . $value . "'";
             if ($i === 0) {
                 $sql = $sql . " WHERE $key = $value";
             } else {
@@ -119,10 +110,7 @@ function selectFind($table, $find_sql, $column, $params = [])
     if (!empty($params)) {
         $i = 0;
         foreach ($params as $key => $value) {
-
-            if (!is_numeric($value)) {
-                $value = "'" . $value . "'";
-            }
+            $value = "'" . $value . "'";
             if ($i === 0) {
                 $sql = $sql . " WHERE $key = $value";
             } else {
@@ -155,11 +143,7 @@ function insertRow($table, $params)
     foreach ($params as $key => $value) {
         if ($i === 0) {
             $coll = $coll . "$key";
-            if (!is_numeric($value)) {
-                $mask = $mask . " '" . "$value" . "'";
-            } else {
-                $mask = $mask . "$value";
-            }
+            $mask = $mask . " '" . "$value" . "'";
         } else {
             $coll = $coll . ", $key";
             if (!is_numeric($value)) {
@@ -213,7 +197,7 @@ function deleteRow($table, $id)
     checkErrors($query);
 }
 
-function callProc ($nameProc, $param)
+function callProc($nameProc, $param)
 {
     global $pdo;
     $sql = "CALL `$nameProc` ($param)";
@@ -233,6 +217,6 @@ function sort_link_bar($title, $a, $b, $table)
     } elseif ($sort == $b) {
         return ' active" href="?sort=' . $a . '&table=' . $table . '">' . $title . ' <i>↓</i>';
     } else {
-        return '" href="?sort=' . $a . '&table=' . $table . ' ">' . $title ;
+        return '" href="?sort=' . $a . '&table=' . $table . ' ">' . $title;
     }
 }
