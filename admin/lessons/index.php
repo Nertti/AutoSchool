@@ -11,17 +11,17 @@
     <main class="main">
         <div class="container">
             <div class="table_page">
-                <div class="title">Учащиеся</div>
-                <div class="search">
-                    <label>
-                        Поиск курсанта по фамилии:
-                        <input type="text" name="search">
-                    </label>
-                    <div class="control">
-                        <button>Найти</button>
-                        <button>Сбросить</button>
-                    </div>
-                </div>
+                <div class="title">Уроки</div>
+<!--                <div class="search">-->
+<!--                    <label>-->
+<!--                        Поиск курсанта по фамилии:-->
+<!--                        <input type="text" name="search">-->
+<!--                    </label>-->
+<!--                    <div class="control">-->
+<!--                        <button>Найти</button>-->
+<!--                        <button>Сбросить</button>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="table">
                     <div class="head_table">
                         <a class="number" href="#">№</a>
@@ -47,10 +47,7 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="control_buttons">
-                    <a href="create.php" class="create">Создать</a>
-                    <a href="index.php" class="create">Назад</a>
-                </div>
+
             </div>
 
         </div>

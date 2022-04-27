@@ -230,6 +230,24 @@ button {
   text-align: center;
 }
 
+.control_buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.control_buttons * {
+  width: 200px;
+  line-height: 50px;
+  background-color: rgba(76, 76, 76, 0.2);
+  text-align: center;
+  font-size: 20px;
+  margin-left: 30px;
+}
+
 .nav {
   position: fixed;
   z-index: 10;
@@ -611,6 +629,50 @@ body.lock {
 
 .table_page .table .body_table * {
   font-weight: normal;
+}
+
+.create_page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 50px 0 0;
+}
+
+.create_page .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.create_page .form * {
+  font-size: 25px;
+}
+
+.create_page .form input {
+  border-bottom: 1px solid #4c4c4c;
+}
+
+.create_page .form label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 500px;
+  margin: 0 auto 10px;
 }
 
 @media screen and (max-width: 1220px) {

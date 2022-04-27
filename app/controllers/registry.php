@@ -1,27 +1,27 @@
 <?php
 //регистрация пользователя в какую либо из таблиц()
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST[''])) {
-    $name = trim($_POST['name']);
-//    $surname = trim($_POST['surname']);
-//    $last_name = trim($_POST['last_name']);
-    $login = trim($_POST['login']);
-    $pass = trim($_POST['password']);
-//    $check_pass = trim($_POST['check_pass']);
-    if ($name === '' || $login === '' || $pass === '') {
-        $error = 'Одно из полей пустое';
-    } else {
-        $pass = password_hash($pass, PASSWORD_DEFAULT);
-        $post = [
-            'name' => $name,
-//            'surname' => $surname,
-//            'last_name' => $last_name,
-            'login' => $login,
-            'password' => $pass,
-        ];
-        $id = insertRow('admins', $post);
-//        header('location: ' . 'admin/admin.php');
-    }
-}
+//if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rr'])) {
+//    $name = trim($_POST['name']);
+////    $surname = trim($_POST['surname']);
+////    $last_name = trim($_POST['last_name']);
+//    $login = trim($_POST['login']);
+//    $pass = trim($_POST['password']);
+////    $check_pass = trim($_POST['check_pass']);
+//    if ($name === '' || $login === '' || $pass === '') {
+//        $error = 'Одно из полей пустое';
+//    } else {
+//        $pass = password_hash($pass, PASSWORD_DEFAULT);
+//        $post = [
+//            'name' => $name,
+////            'surname' => $surname,
+////            'last_name' => $last_name,
+//            'login' => $login,
+//            'password' => $pass,
+//        ];
+//        $id = insertRow('admins', $post);
+////        header('location: ' . 'admin/admin.php');
+//    }
+//}
 //авторизация созданного пользователя
 function userAuth($user)
 {
@@ -43,7 +43,7 @@ function userAuth($user)
         $_SESSION['login'] = $user['login'];
         $_SESSION['pass'] = $user['password'];
 
-        header('location: ' . 'user/user.php');
+        header('location: ' . 'teacher/teacher');
     }
 }
 

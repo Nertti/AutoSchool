@@ -13,10 +13,10 @@
                 <div class="nav__menu">
                     <ul class="nav__list">
                         <li><a href="<?php echo BASE_URL ?>admin/students/index.php">Учащиеся</a></li>
-                        <li><a href="<?php echo BASE_URL ?>/">Преподаватели</a></li>
-                        <li><a href="<?php echo BASE_URL ?>/">Группы</a></li>
-                        <li><a href="<?php echo BASE_URL ?>/">Уроки</a></li>
-                        <li><a href="<?php echo BASE_URL ?>/">Кабинеты</a></li>
+                        <li><a href="<?php echo BASE_URL ?>admin/teachers/index.php">Преподаватели</a></li>
+                        <li><a href="<?php echo BASE_URL ?>admin/groups/index.php">Группы</a></li>
+                        <li><a href="<?php echo BASE_URL ?>admin/lessons/index.php">Уроки</a></li>
+                        <li><a href="<?php echo BASE_URL ?>admin/cabinets/index.php">Кабинеты</a></li>
                         <li><a href="<?php echo BASE_URL ?>/">Расписание</a></li>
                         <?php if (isset($_SESSION['id_admin'])): ?>
                             <a href="<?php echo BASE_URL ?>admin/admin.php">Администратор</a>

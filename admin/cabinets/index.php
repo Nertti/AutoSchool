@@ -47,10 +47,7 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="control_buttons">
-                    <a href="create.php" class="create">Создать</a>
-                    <a href="index.php" class="create">Назад</a>
-                </div>
+
             </div>
 
         </div>
