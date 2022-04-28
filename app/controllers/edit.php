@@ -46,12 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         }
 
     }
+    //ok
     if ($table === 'teachers') {
         $id = 'id_teacher = ' . $_GET['id_edit'];
         $name = trim($_POST['name']);
         $surname = trim($_POST['surname']);
         $last_name = trim($_POST['last_name']);
         $login = trim($_POST['login']);
+        $passport = trim($_POST['passport']);
         $phone = str_replace([' ', '(', ')', '-',], '', trim($_POST['phone']));
         if ($name === '' || $surname === '' || $login === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля';
@@ -61,10 +63,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
             $error = 'Слишком длинная фамилия!';
         } elseif (iconv_strlen($last_name) > 50) {
             $error = 'Слишком длинное отчество!';
-        } elseif (!preg_match($preg_phone, $phone) && !$phone == '') {
-            $error = 'Введите корректный номер телефона';
         } elseif (iconv_strlen($login) < 3 || iconv_strlen($login) > 15) {
             $error = 'Длина логина может быть от 3 до 15 символов!';
+        } elseif (!preg_match($preg_phone, $phone) && !$phone == '') {
+            $error = 'Введите верный телефон';
+        } elseif (!preg_match($preg_passport, $passport) && $passport != '') {
+            $error = 'Введите верный паспорт';
         } else {
             $post = [
                 'name' => $name,
@@ -72,31 +76,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
                 'last_name' => $last_name,
                 'login' => $login,
                 'phone' => $phone,
+                'passport' => $passport,
             ];
             updateRow('teachers', $id, $post);
             header('location: ' . 'index.php');
         }
 
     }
-    if ($table === 'courses') {
-        $id = 'id_course = ' . $_GET['id_edit'];
-        $name = trim($_POST['name']);
-        $price = trim($_POST['price']);
-        if ($name === '' || $price === '') {
-            $error = 'Одно из полей пустое. Обязательно заполните все поля';
-        } elseif (iconv_strlen($name) > 30) {
-            $error = 'Слишком длинное имя!';
-        } elseif (iconv_strlen($price) > 3) {
-            $error = 'Слишком большая цена';
-        } else {
-            $post = [
-                'name' => $name,
-                'price' => $price,
-            ];
-            updateRow('courses', $id, $post);
-            header('location: ' . 'index.php');
-        }
-    }
+    //ok
     if ($table === 'groups') {
         $id = 'id_group = ' . $_GET['id_edit'];
         $number = trim($_POST['number']);

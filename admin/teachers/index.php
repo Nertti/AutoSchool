@@ -40,7 +40,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                     echo mb_substr($teacher['last_name'], 0, 1) . '.'; ?></span>
                                 <span class="phone"><?=$teacher['phone']?></span>
                                 <span class="control">
-                                <a class="edit" href="edit.php?table=students&id_edit=<?= $teacher['id_teacher']; ?>">Информация</a>
+                                <a class="edit" href="edit.php?table=teachers&id_edit=<?= $teacher['id_teacher']; ?>">Информация</a>
                                 <a class="delete" onClick="return window.confirm('Удалить преподавателя из базы?');" href="?table=teachers&del_id=<?= $teacher['id_teacher']; ?>">Удалить</a>
                             </span>
                             </div>

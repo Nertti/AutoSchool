@@ -30,6 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $check_phone = selectOne($table, ['phone' => $phone]);
             if ($check_phone['phone'] === $phone) {
                 $error = 'Такой пользователь уже существует';
+            } elseif ($passport != '') {
+                $check_passport_student = selectOne($table, ['passport' => $passport]);
+                if (!$check_passport_student == '') {
+                    $error = 'Такой паспорт уже зарегистрирован';
+                }
             } else {
                 $post = [
                     'name' => $name,
@@ -72,9 +77,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $error = 'Введите верный паспорт';
         } else {
             $check_login_teacher = selectOne('teachers', ['login' => $login]);
-            if (!$check_login_teacher == '') {
+            $check_phone_teacher = selectOne('teachers', ['phone' => $phone]);
+            if (!$check_phone_teacher == '') {
+                $error = 'Такой телефон уже зарегистрирован';
+            } elseif (!$check_login_teacher == '') {
                 $error = 'Такой пользователь уже существует (преподаватель)';
+            } elseif ($passport != '') {
+                $check_passport_teacher = selectOne('teachers', ['passport' => $passport]);
+                if (!$check_passport_teacher == '') {
+                    $error = 'Такой паспорт уже зарегистрирован';
+                }
             } else {
+
                 $pass = password_hash($pass, PASSWORD_DEFAULT);
                 $post = [
                     'name' => $name,
