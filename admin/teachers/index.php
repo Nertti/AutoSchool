@@ -1,4 +1,6 @@
-<?php include '../../path.php' ?>
+<?php include '../../path.php';
+include SITE_ROOT . '/app/include/redirectAdmin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,13 +41,16 @@
                                 <span class="phone"><?=$teacher['phone']?></span>
                                 <span class="control">
                                 <a class="edit" href="edit.php?table=students&id_edit=<?= $teacher['id_teacher']; ?>">Информация</a>
-                                <a class="delete" onClick="return window.confirm('Удалить учащегося?');" href="?table=students&del_id=<?= $teacher['id_teacher']; ?>">Удалить</a>
+                                <a class="delete" onClick="return window.confirm('Удалить преподавателя из базы?');" href="?table=teachers&del_id=<?= $teacher['id_teacher']; ?>">Удалить</a>
                             </span>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
-
+                <div class="control_buttons">
+                    <a href="create.php" class="create">Создать</a>
+                    <a href="index.php" class="create">Назад</a>
+                </div>
             </div>
 
         </div>

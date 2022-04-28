@@ -1,4 +1,7 @@
-<?php include '../path.php'?>
+<?php
+include '../path.php';
+include SITE_ROOT  . '/app/include/redirectAdmin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
