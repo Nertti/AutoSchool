@@ -8,3 +8,6 @@
 .control_buttons a{
     font-weight: normal;
 }
+.container .table .body_table{
+    height: 500px;
+}

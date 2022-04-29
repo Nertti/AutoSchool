@@ -37,7 +37,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                 <span class="group left-border"><?=$group['number']?></span>
                                 <span class="group"><?=$group['name']?></span>
                                 <span class="control">
-                                <a class="edit" href="edit.php?table=students&id_edit=<?= $group['id_group']; ?>">Информация</a>
+                                <a class="edit" href="group_info.php?table=groups&id_group=<?= $group['id_group']; ?>&number=<?= $group['number']; ?>">Информация</a>
                                 <a class="delete" onClick="return window.confirm('Удалить учащегося?');" href="?table=groups&del_id=<?= $group['id_group']; ?>">Удалить</a>
                             </span>
                             </div>
