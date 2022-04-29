@@ -7,6 +7,7 @@
 }
 .control_buttons a{
     font-weight: normal;
+    margin: 20px;
 }
 .container .table .body_table{
     height: 500px;
