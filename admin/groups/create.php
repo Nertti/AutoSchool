@@ -40,7 +40,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     </label>
 
                     <div class="control_buttons">
-                        <button name="btn-add" type="submit" value="groups">Создать</button>
+                        <button class="btn" name="btn-add" type="submit" value="groups">Создать</button>
                         <a href="index.php">Назад</a>
                     </div>
                 </form>

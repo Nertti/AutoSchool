@@ -2,7 +2,7 @@
 $teachers = selectALL('teachers');
 $admins = selectALL('admins');
 $students = selectALL('students');
-//$students = selectALL('students+group');//view
+$studentsVIEW = selectALL('select_students');//view
 $groups = selectALL('groups');
 $groupsVIEW = selectALL('select_groups');//view
 $lessons = selectALL('lessons');

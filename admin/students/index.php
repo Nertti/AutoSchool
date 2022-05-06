@@ -32,13 +32,19 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <span class="control">Управление</span>
                     </div>
                     <div class="body_table">
-                        <?php foreach ($students as $key => $student): ?>
+                        <?php foreach ($studentsVIEW as $key => $student): ?>
                             <div class="row_table">
                                 <span class="number"><?= $key + 1; ?></span>
                                 <span class="surname"><?php echo $student['surname'] . ' ';
                                     echo mb_substr($student['name'], 0, 1) . '.';
-                                    echo mb_substr($student['last_name'], 0, 1) . '.'; ?></span>
-                                <span class="group left-border">Т917</span>
+                                    echo mb_substr($student['last_name'], 0, 1) . '.';
+                                    ?></span>
+                                <?php if ($student['number'] === '' || !isset($student['number'])): ?>
+                                    <span class="group left-border">Отс.</span>
+                                <?php else: ?>
+                                    <span class="group left-border"><?=$student['number']?></span>
+                                <?php endif; ?>
+<!--                                <span class="group left-border">--><?//=$student['number']?><!--</span>-->
                                 <span class="phone"><?=$student['phone']?></span>
                                 <span class="control">
                                 <a class="edit" href="edit.php?table=students&id_edit=<?= $student['id_student']; ?>">Информация</a>

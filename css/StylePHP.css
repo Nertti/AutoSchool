@@ -12,3 +12,10 @@
 .container .table .body_table{
     height: 500px;
 }
+.btn{
+    font-size: 25px;
+    margin: 20px;
+}
+.btn:hover{
+    color: #e15353;
+}

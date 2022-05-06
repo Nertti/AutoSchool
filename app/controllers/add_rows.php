@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $phone = str_replace([' ', '(', ')', '-',], '', trim($_POST['phone']));
         $passport = trim($_POST['passport']);
         $today = date("Y-n-j");
+        $check_phone = selectOne($table, ['phone' => $phone]);
         if ($name === '' || $surname === '' || $last_name === '' || $phone === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } elseif (iconv_strlen($name) > 30) {
@@ -26,29 +27,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $error = 'Введите верный телефон';
         } elseif (!preg_match($preg_passport, $passport) && $passport != '') {
             $error = 'Введите верный паспорт';
+        } elseif ($check_phone['phone'] === $phone) {
+            $error = 'Такой телефон уже зарегистрирован';
         } else {
-            $check_phone = selectOne($table, ['phone' => $phone]);
-            if ($check_phone['phone'] === $phone) {
-                $error = 'Такой пользователь уже существует';
-            } elseif ($passport != '') {
+            if ($passport != '') {
                 $check_passport_student = selectOne($table, ['passport' => $passport]);
                 if (!$check_passport_student == '') {
                     $error = 'Такой паспорт уже зарегистрирован';
                 }
-            } else {
-                $post = [
-                    'name' => $name,
-                    'surname' => $surname,
-                    'last_name' => $last_name,
-                    'phone' => $phone,
-                    'passport' => $passport,
-                    'date_start' => $today,
-                ];
-
-                $id = insertRow($table, $post);
-                header('location: ' . 'index.php');
             }
+            $post = [
+                'name' => $name,
+                'surname' => $surname,
+                'last_name' => $last_name,
+                'phone' => $phone,
+                'passport' => $passport,
+                'date_start' => $today,
+            ];
+            $id = insertRow($table, $post);
+            header('location: ' . 'index.php');
         }
+
+
     }
     //ok
     if ($table === 'teachers') {

@@ -41,7 +41,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <input type="text" name="login" value="<?= $teacher['login'] ?>" required>
                     </label>
                     <div class="control_buttons">
-                        <button name="btn-update" type="submit" value="teachers">Изменить</button>
+                        <button class="btn" name="btn-update" type="submit" value="teachers">Изменить</button>
                         <a href="index.php">Назад</a>
                     </div>
                 </form>

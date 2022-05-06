@@ -37,7 +37,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <input type="text" name="passport" value="<?= $passport ?>">
                     </label>
                     <div class="control_buttons">
-                        <button name="btn-add" type="submit" value="students">Создать</button>
+                        <button class="btn" name="btn-add" type="submit" value="students">Создать</button>
                         <a href="index.php">Назад</a>
                     </div>
                 </form>
