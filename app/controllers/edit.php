@@ -1,6 +1,6 @@
 <?php
 $id = '';
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_edit'])) {
+if (isset($_GET['id_edit'])) {
     $id = $_GET['id_edit'];
     $table = $_GET['table'];
     if ($table === 'students') {
@@ -87,21 +87,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
     if ($table === 'groups') {
         $id = 'id_group = ' . $_GET['id_edit'];
         $number = trim($_POST['number']);
-        $course = trim($_POST['id_course']);
-        $teacher = trim($_POST['id_teacher']);
-        if ($number === '' || $course === '') {
+        $category = trim($_POST['id_category']);
+        $count = trim($_POST['count']);
+        if ($number === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } elseif (iconv_strlen($number) > 5) {
             $error = 'Слишком длинный номер группы!';
         } else {
             $post = [
                 'number' => $number,
-                'id_course' => $course,
-                'id_teacher' => $teacher,
+                'id_category' => $category,
+                'count_students' => $count,
             ];
             updateRow('groups', $id, $post);
             header('location: ' . 'index.php');
         }
     }
-    //hz
+    //ok
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['add_student_id'])) {
+    $id = 'id_student = ' . $_GET['add_student_id'];
+    $id_group = $_GET['id_group'];
+    $group = selectOne('groups', ['id_group' => $id_group]);
+//    $students_count = callProc('proc_student', $_GET['id_group']);
+    if(count($students_in_group) >= $group['count_students']){
+        $error = 'Лимит учащихся ' . $group['count_students'];
+    }else{
+        $post = [
+            'id_group' => $_GET['id_group'],
+        ];
+        updateRow('students', $id, $post);
+        header('location: ' . 'edit_stud_in_group.php?id_group=' . $_GET['id_group'] . '&number=' . $group['number']);
+    }
+}
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_student_id'])) {
+    $id =  'id_student = ' . $_GET['del_student_id'];
+    $post = [
+        'id_group' => 'NULL',
+    ];
+    $id_group = $_GET['id_group'];
+    $group = selectOne('groups', ['id_group' => $id_group]);
+    updateRow('students', $id, $post);
+    header('location: ' . 'edit_stud_in_group.php?id_group=' . $_GET['id_group'] . '&number=' . $group['number']);
 }

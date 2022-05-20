@@ -30,6 +30,11 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <?php endforeach; ?>
                     </div>
                 </div>
+                <div class="control_buttons">
+                    <a href="edit_stud_in_group.php?id_group=<?=$_GET['id_group']?>&number=<?=$_GET['number']?>">Изменить состав</a>
+                    <a href="edit.php?id_edit=<?=$_GET['id_group']?>&table=groups">Редактировать</a>
+                    <a href="index.php">Назад</a>
+                </div>
 
             </div>
 

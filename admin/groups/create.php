@@ -17,20 +17,15 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 <div class="error_msg"><?= $error ?></div>
                 <form action="" class="form" method="post">
                     <label>
-                        Номер:
+                        <span class="required">Номер:</span>
                         <input type="text" name="number" value="<?= $number ?>" required>
                     </label>
                     <label>
-                        Преподаватель:
-                        <select name="id_teacher" required>
-                            <option value="" selected>'Выбрать'</option>
-                            <?php foreach ($teachers as $key => $teacher): ?>
-                                <option value="<?= $teacher['id_teacher']; ?>"><?= $teacher['surname']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <span class="required">Количество участников:</span>
+                        <input type="number" min="0" max="30" name="count" value="<?= $count ?>" required>
                     </label>
                     <label>
-                        Категория:
+                        <span class="required">Категория:</span>
                         <select name="id_category" required>
                             <option value="" selected>'Выбрать'</option>
                             <?php foreach ($categories as $key => $category): ?>

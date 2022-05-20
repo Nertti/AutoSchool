@@ -138,11 +138,21 @@ function insertRow($table, $params)
     $mask = '';
     foreach ($params as $key => $value) {
         if ($i === 0) {
-            $coll = $coll . "$key";
-            $mask = $mask . " '" . "$value" . "'";
+            if($value === 'NULL'){
+                $coll = $coll . "$key";
+                $mask = $mask . $value;
+            }else{
+                $coll = $coll . "$key";
+                $mask = $mask . " '" . "$value" . "'";
+            }
         } else {
-            $coll = $coll . ", $key";
-            $mask = $mask . "," . " '" . "$value" . "'";
+            if($value === 'NULL'){
+                $coll = $coll . ", $key";
+                $mask = $mask . "," . $value;
+            }else{
+                $coll = $coll . ", $key";
+                $mask = $mask . "," . " '" . "$value" . "'";
+            }
         }
         $i++;
     }
@@ -164,9 +174,17 @@ function updateRow($table, $id, $params)
 
     foreach ($params as $key => $value) {
         if ($i === 0) {
-            $str = $str . $key . " = '" . $value . "'";
+            if($value === 'NULL'){
+                $str = $str . $key . " = " . $value;
+            }else{
+                $str = $str . $key . " = '" . $value . "'";
+            }
         } else {
-            $str = $str . ", " . $key . " = '" . $value . "'";
+            if($value === 'NULL'){
+                $str = $str . $key . " = " . $value;
+            }else{
+                $str = $str . ", " . $key . " = '" . $value . "'";
+            }
         }
         $i++;
     }
@@ -189,10 +207,11 @@ function deleteRow($table, $id)
     checkErrors($query);
 }
 
-function callProc ($nameProc, $param)
+function callProc ($nameProc, $param=[])
 {
     global $pdo;
     $sql = "CALL `$nameProc` ($param)";
+//    tt($sql);
     $query = $pdo->prepare($sql);
     $query->execute();
 

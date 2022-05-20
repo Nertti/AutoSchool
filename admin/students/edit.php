@@ -4,7 +4,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Вход</title>
+    <title>Автошкола</title>
     <?php include SITE_ROOT . '/app/include/head.php' ?>
 </head>
 <body>

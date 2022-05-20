@@ -19,3 +19,38 @@
 .btn:hover{
     color: #e15353;
 }
+.two-tables{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.two-tables *{
+    width: 100%;
+}
+.two-tables .table{
+    padding: 10px;
+}
+.required:after{
+    content: '*';
+    color: #e15353;
+}
+.container.XXL{
+    max-width: 1600px;
+}
+
+.timetable_block{
+    width: 220px;
+    border-left: 1px solid #4c4c4c;
+    margin: 5px 0;
+    display: block;
+    /*flex-direction: column;*/
+}
+.timetable_block:last-child{
+    border-right: 1px solid #4c4c4c;
+}
+.body_table .row_table .timetable_block {
+    width: 220px;
+}
+.head_table .timetable_block {
+    max-width: 220px;
+}

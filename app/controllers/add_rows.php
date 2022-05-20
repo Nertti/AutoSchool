@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $passport = trim($_POST['passport']);
         $today = date("Y-n-j");
         $check_phone = selectOne($table, ['phone' => $phone]);
-        if ($name === '' || $surname === '' || $last_name === '' || $phone === '') {
+        if ($name === '' || $surname === '' || $phone === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } elseif (iconv_strlen($name) > 30) {
             $error = 'Слишком длинное имя!';
@@ -36,6 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     $error = 'Такой паспорт уже зарегистрирован';
                 }
             }
+            if ($passport === '') {
+                $passport = 'NULL';
+            }
             $post = [
                 'name' => $name,
                 'surname' => $surname,
@@ -50,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
 
 
     }
-    //ok
+    //ok//
     if ($table === 'teachers') {
         $name = trim($_POST['name']);
         $surname = trim($_POST['surname']);
@@ -59,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $pass = trim($_POST['password']);
         $phone = str_replace([' ', '(', ')', '-',], '', trim($_POST['phone']));
         $passport = trim($_POST['passport']);
+        $id_time_work = trim($_POST['id_time_work']);
         if ($name === '' || $surname === '' || $login === '' || $pass === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля со звёздочкой';
         } elseif (iconv_strlen($name) > 30) {
@@ -98,20 +102,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'password' => $pass,
                     'phone' => $phone,
                     'passport' => $passport,
+                    'id_time_work' => $id_time_work,
                 ];
                 $id = insertRow($table, $post);
                 header('location: ' . 'index.php');
             }
         }
     }
-    //ok
+    //ok//
     if ($table === 'groups') {
         $number = trim($_POST['number']);
         $category = trim($_POST['id_category']);
-        $teacher = trim($_POST['id_teacher']);
-        if ($number === '' || $category === '' || $teacher === '') {
+        $count = trim($_POST['count']);
+        if ($number === '' || $category === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } elseif (iconv_strlen($number) > 5) {
+            $error = 'Слишком длинный номер группы!';
+        } elseif ($count > 30) {
             $error = 'Слишком длинный номер группы!';
         } else {
             $check_number = selectOne($table, ['number' => $number]);
@@ -121,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                 $post = [
                     'number' => $number,
                     'id_category' => $category,
-                    'id_teacher' => $teacher,
+                    'count_students' => $count,
                 ];
                 $id = insertRow($table, $post);
                 header('location: ' . 'index.php');
@@ -130,18 +137,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
     }
     // ok + front
     if ($table === 'lessons') {
-        $group = trim($_POST['id_group']);
+        $name = trim($_POST['name']);
         $date = trim($_POST['date']);
-        $time_start = trim($_POST['time_start']);
-        $time_end = trim($_POST['time_end']);
-        if ($group === '' || $time_start === '' || $date == '') {
+        $group = trim($_POST['id_group']);
+        $teacher = trim($_POST['id_teacher']);
+        $cabinet = trim($_POST['id_cabinet']);
+
+        $this_lesson_group = selectOne('lessons', [
+            'id_group' => $group,
+            'date' => $date,
+        ]);
+        $this_lesson = selectOne('lessons', [
+            'date' => $date,
+        ]);
+        $lessons_on_teach = callProc('proc_lessons_on_teacher',
+            $teacher . ', "' .
+            date('Y-m-d', strtotime('monday this week', strtotime($date))) . '","' .
+            date('Y-m-d', strtotime('saturday this week', strtotime($date))) . '"');
+
+        $time = callProc('proc_timeteacher', $teacher);
+        $timeOne = $time['0'];
+        if (count($lessons_on_teach)*2 > $timeOne['time']) {
+            $error = 'Количество часов в неделю преподавателя превышено';
+        } elseif ($group === '' || $date == '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
+        } elseif (!$this_lesson_group == '') {
+            $error = 'Урок у этой группы в этот день уже есть';
         } else {
             $post = [
+                'name' => $name,
                 'date' => $date,
-                'time_start' => $time_start,
-                'time_end' => $time_end,
+                'id_cabinet' => $cabinet,
                 'id_group' => $group,
+                'id_teacher' => $teacher,
             ];
             $id = insertRow($table, $post);
             header('location: ' . 'index.php');

@@ -17,24 +17,24 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 <div class="error_msg"><?= $error ?></div>
                 <form action="" class="form" method="post">
                     <label>
-                        Фамилия:
+                        <span class="required">Фамилия:</span>
                         <input type="text" name="surname" value="<?= $surname ?>" required>
                     </label>
                     <label>
-                        Имя:
+                        <span class="required">Имя:</span>
                         <input type="text" name="name" value="<?= $name ?>" required>
                     </label>
                     <label>
                         Отчество:
-                        <input type="text" name="last_name" value="<?= $last_name ?>" required>
+                        <input type="text" name="last_name" value="<?= $last_name ?>">
                     </label>
                     <label>
-                        Телефон:
-                        <input type="text" name="phone" value="<?= $phone ?>" required>
+                        <span class="required">Телефон:</span>
+                        <input type="text" name="phone" placeholder="+375 (xx) xxx-xx-xx" value="<?= $phone ?>" required>
                     </label>
                     <label>
                         Паспорт:
-                        <input type="text" name="passport" value="<?= $passport ?>">
+                        <input type="text" name="passport" placeholder="AAxxxxxxx" value="<?= $passport ?>">
                     </label>
                     <div class="control_buttons">
                         <button class="btn" name="btn-add" type="submit" value="students">Создать</button>

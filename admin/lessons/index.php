@@ -1,6 +1,7 @@
 <?php include '../../path.php';
 include SITE_ROOT . '/app/include/redirectAdmin.php';
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Вход</title>
@@ -10,9 +11,9 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
 <div class="wrapper">
     <?php include SITE_ROOT . '/app/include/header.php' ?>
     <main class="main">
-        <div class="container">
+        <div class="container XXL">
             <div class="table_page">
-                <div class="title">Уроки</div>
+                <div class="title">Расписание</div>
 <!--                <div class="search">-->
 <!--                    <label>-->
 <!--                        Поиск курсанта по фамилии:-->
@@ -25,30 +26,41 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
 <!--                </div>-->
                 <div class="table">
                     <div class="head_table">
-                        <a class="number" href="#">№</a>
-                        <a class="surname" href="#">Фамилия И.О.</a>
-                        <a class="group left-border" href="#">Группа</a>
-                        <span class="phone">Телефон</span>
-                        <span class="control">Управление</span>
+                        <span class="timetable_block">Группы\Дата</span>
+                        <?php for ($i = 0; $i < 6; $i++): ?>
+
+                            <span class="timetable_block"><?=$day_of_week[$i]?><br><?=$week[$i]?></span>
+                        <?endfor;?>
                     </div>
                     <div class="body_table">
-                        <?php foreach ($students as $key => $student): ?>
+                        <?php foreach ($groups as $key => $group): ?>
                             <div class="row_table">
-                                <span class="number"><?= $key + 1; ?></span>
-                                <span class="surname"><?php echo $student['surname'] . ' ';
-                                    echo mb_substr($student['name'], 0, 1) . '.';
-                                    echo mb_substr($student['last_name'], 0, 1) . '.'; ?></span>
-                                <span class="group left-border">Т917</span>
-                                <span class="phone"><?=$student['phone']?></span>
-                                <span class="control">
-                                <a class="edit" href="edit.php?table=students&id_edit=<?= $student['id_student']; ?>">Информация</a>
-                                <a class="delete" onClick="return window.confirm('Удалить учащегося?');" href="?table=students&del_id=<?= $student['id_student']; ?>">Удалить</a>
-                            </span>
+                                <span class="timetable_block"><?=$group['number']?></span>
+                                <?php
+                                $this_date = date('Y-m-d', strtotime('monday this week'));
+                                ?>
+                                <?php foreach (callProc('proc_lesson_on_group', $group['id_group'] . ', "' .
+                                    date('Y-m-d', strtotime('monday this week')) . '","' .
+                                    date('Y-m-d', strtotime('saturday this week')) . '"') as $key => $lesson): ?>
+                                    <?php while ($lesson['date'] !== $this_date): ?>
+                                        <span class="timetable_block"></span>
+                                        <?php
+                                        $this_date = date('Y-m-d', strtotime($this_date . '+ 1 day'));
+                                        ?>
+                                    <?php endwhile; ?>
+                                    <span class="timetable_block"><?=$lesson['name']?></span>
+                                    <?php
+                                    $this_date = date('Y-m-d', strtotime($this_date . '+ 1 day'));
+                                    ?>
+                                <?php endforeach; ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
-
+                <div class="control_buttons">
+                    <a href="create.php" class="create">Создать занятие</a>
+                    <a class="create">Следующая неделя</a>
+                </div>
             </div>
 
         </div>

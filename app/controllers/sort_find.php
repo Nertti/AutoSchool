@@ -1,9 +1,4 @@
 <?php
-$students = selectALL('students');
-$teachers = selectALL('teachers');
-$admins = selectALL('admins');
-$courses = selectALL('courses');
-$groups = selectALL('groups');
 $sort_list = [
     'id_asc' => 'id_student',
     'id_desc' => 'id_student DESC',
