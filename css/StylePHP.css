@@ -39,18 +39,25 @@
 }
 
 .timetable_block{
-    width: 220px;
+    width: 225px;
     border-left: 1px solid #4c4c4c;
     margin: 5px 0;
     display: block;
+    padding: 15px;
     /*flex-direction: column;*/
 }
 .timetable_block:last-child{
     border-right: 1px solid #4c4c4c;
 }
 .body_table .row_table .timetable_block {
-    width: 220px;
+    width: 225px;
 }
 .head_table .timetable_block {
-    max-width: 220px;
+    max-width: 225px;
+}
+.cabinet{
+    color: #bbbbbb;
+    background-color: #4c4c4c;
+    border-radius: 10px;
+    padding: 0 5px;
 }

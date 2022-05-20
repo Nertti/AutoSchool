@@ -35,7 +35,9 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     <div class="body_table">
                         <?php foreach ($groups as $key => $group): ?>
                             <div class="row_table">
-                                <span class="timetable_block"><?=$group['number']?></span>
+                                <span class="timetable_block">
+                                    <?=$group['number']?>
+                                </span>
                                 <?php
                                 $this_date = date('Y-m-d', strtotime('monday this week'));
                                 ?>
@@ -48,7 +50,11 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                         $this_date = date('Y-m-d', strtotime($this_date . '+ 1 day'));
                                         ?>
                                     <?php endwhile; ?>
-                                    <span class="timetable_block"><?=$lesson['name']?></span>
+                                    <span class="timetable_block"><?=$lesson['name']?> <span class="cabinet" title="Кабинет"><?=$lesson['number']?></span><br>
+                                        <?=$lesson['surname']?>
+                                        <?= ' ' . mb_substr($lesson['name_t'], 0, 1) . '.' ?>
+                                        <?= mb_substr($lesson['last_name'], 0, 1) . '.' ?>
+                                    </span>
                                     <?php
                                     $this_date = date('Y-m-d', strtotime($this_date . '+ 1 day'));
                                     ?>
