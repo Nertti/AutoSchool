@@ -13,21 +13,21 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
         <div class="container">
             <div class="table_page">
                 <div class="title">Учащиеся</div>
-                <div class="search">
+                <form method="post" class="search">
                     <label>
                         Поиск курсанта по фамилии:
-                        <input type="text" name="search">
+                        <input type="text" value="<?= $find_sql ?>" name="search">
                     </label>
                     <div class="control">
-                        <button>Найти</button>
-                        <button>Сбросить</button>
+                        <button type="submit" value="select_students" name="find">Найти</button>
+                        <button type="submit" value="select_students" name="reset">Сбросить</button>
                     </div>
-                </div>
+                </form>
                 <div class="table">
                     <div class="head_table">
-                        <a class="number" href="#">№</a>
-                        <a class="surname" href="#">Фамилия И.О.</a>
-                        <a class="group left-border" href="#">Группа</a>
+                        <span class="number">№</span>
+                        <a class="surname <?php echo sort_link_bar('Фамилия И.О.', 'surname_asc', 'surname_desc', 'students'); ?></a>
+                        <a class="group left-border <?php echo sort_link_bar('Группа', 'group_name_asc', 'group_name_desc', 'students'); ?></a>
                         <span class="phone">Телефон</span>
                         <span class="control">Управление</span>
                     </div>

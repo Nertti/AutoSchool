@@ -13,21 +13,21 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
         <div class="container S">
             <div class="table_page">
                 <div class="title">Группы</div>
-                <div class="search">
+                <form method="post" class="search">
                     <label>
                         Поиск группы по номеру:
-                        <input type="text" name="search">
+                        <input type="text" value="<?= $find_sql ?>" name="search">
                     </label>
                     <div class="control">
-                        <button>Найти</button>
-                        <button>Сбросить</button>
+                        <button type="submit" value="select_groups" name="find">Найти</button>
+                        <button type="submit" value="select_groups" name="reset">Сбросить</button>
                     </div>
-                </div>
+                </form>
                 <div class="table">
                     <div class="head_table">
-                        <a class="number" href="#">№</a>
-                        <a class="group left-border" href="#">Номер</a>
-                        <a class="group" href="#">Категория</a>
+                        <span class="number">№</span>
+                        <a class="group left-border<?php echo sort_link_bar('Номер', 'number_asc', 'number_desc', 'groups'); ?></a>
+                        <a class="phone<?php echo sort_link_bar('Категория', 'category_asc', 'category_desc', 'groups'); ?></a>
                         <span class="control">Управление</span>
                     </div>
                     <div class="body_table">
@@ -35,7 +35,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                             <div class="row_table">
                                 <span class="number"><?= $key + 1; ?></span>
                                 <span class="group left-border"><?=$group['number']?></span>
-                                <span class="group"><?=$group['name']?></span>
+                                <span class="phone"><?=$group['name']?></span>
                                 <span class="control">
                                 <a class="edit" href="group_info.php?table=groups&id_group=<?= $group['id_group']; ?>&number=<?= $group['number']; ?>">Информация</a>
                                 <a class="delete" onClick="return window.confirm('Удалить группу?');" href="?table=groups&del_id=<?= $group['id_group']; ?>">Удалить</a>

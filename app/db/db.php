@@ -224,9 +224,9 @@ function sort_link_bar($title, $a, $b, $table)
 {
     $sort = @$_GET['sort'];
     if ($sort == $a) {
-        return ' active" href="?sort=' . $b . '&table=' . $table . '">' . $title . ' <i>↑</i>';
+        return ' active" href="?sort=' . $b . '&table=' . $table . '">' . $title . ' <i class="arrow">↑</i>';
     } elseif ($sort == $b) {
-        return ' active" href="?sort=' . $a . '&table=' . $table . '">' . $title . ' <i>↓</i>';
+        return ' active" href="?sort=' . $a . '&table=' . $table . '">' . $title . ' <i class="arrow">↓</i>';
     } else {
         return '" href="?sort=' . $a . '&table=' . $table . ' ">' . $title ;
     }

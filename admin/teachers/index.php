@@ -14,20 +14,20 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
         <div class="container L">
             <div class="table_page">
                 <div class="title">Преподаватели</div>
-                <div class="search">
+                <form method="post" class="search">
                     <label>
                         Поиск преподавателя по фамилии:
-                        <input type="text" name="search">
+                        <input type="text" value="<?= $find_sql ?>" name="search">
                     </label>
                     <div class="control">
-                        <button>Найти</button>
-                        <button>Сбросить</button>
+                        <button type="submit" value="teachers" name="find">Найти</button>
+                        <button type="submit" value="teachers" name="reset">Сбросить</button>
                     </div>
-                </div>
+                </form>
                 <div class="table">
                     <div class="head_table">
-                        <a class="number" href="#">№</a>
-                        <a class="surname" href="#">Фамилия И.О.</a>
+                        <span class="number">№</span>
+                        <a class="surname <?php echo sort_link_bar('Фамилия И.О.', 'surname_asc', 'surname_desc', 'students'); ?></a>
                         <span class="phone">Телефон</span>
                         <span class="control">Управление</span>
                     </div>

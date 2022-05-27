@@ -1,21 +1,18 @@
 <?php
+$find_sql = '';
 $sort_list = [
     'id_asc' => 'id_student',
     'id_desc' => 'id_student DESC',
     'surname_asc' => 'surname',
     'surname_desc' => 'surname DESC',
-    'balance_asc' => 'balance',
-    'balance_desc' => 'balance DESC',
-    'name_asc' => 'name',
-    'name_desc' => 'name DESC',
-    'price_asc' => 'price',
-    'price_desc' => 'price DESC',
+    'group_name_asc' => 'number',
+    'group_name_desc' => 'number DESC',
+
+
     'number_asc' => 'number',
     'number_desc' => 'number DESC',
-    'count_asc' => 'count',
-    'count_desc' => 'count DESC',
-    'count_students_asc' => 'count_students',
-    'count_students_desc' => 'count_students DESC',
+    'category_asc' => 'name',
+    'category_desc' => 'name DESC',
 ];
 
 $sort = @$_GET['sort'];
@@ -27,33 +24,28 @@ if (array_key_exists($sort, $sort_list)) {
 }
 if(isset($_GET['sort'])){
     if ($table === 'students'){
-        $students = selectOrder('students', $sort_sql);
+        $studentsVIEW = selectOrder('select_students', $sort_sql);
     } elseif ($table === 'teachers'){
         $teachers = selectOrder('teachers', $sort_sql);
-    } elseif ($table === 'courses'){
-        $courses = selectOrder('courses', $sort_sql);
     } elseif ($table === 'groups'){
-        $groups = selectOrder('groups', $sort_sql);
+        $groupsVIEW = selectOrder('select_groups', $sort_sql);
     }
 }
 
 if (isset($_POST['find'])) {
     $table = $_POST['find'];
     $find_sql = $_POST['search'];
-    if($table === 'students'){
-        $students = selectFind($table, $find_sql, 'surname');
-    }elseif ($table === 'courses'){
-        $courses = selectFind($table, $find_sql, 'name');
+    if($table === 'select_students'){
+        $studentsVIEW = selectFind($table, $find_sql, 'surname');
     }elseif ($table === 'teachers'){
         $teachers = selectFind($table, $find_sql, 'surname');
-    }elseif ($table === 'groups'){
-        $groups = selectFind($table, $find_sql, 'number');
+    }elseif ($table === 'select_groups'){
+        $groupsVIEW = selectFind($table, $find_sql, 'number');
     }
 }
 if (isset($_POST['reset'])) {
     $table = $_POST['reset'];
-    $students = selectALL($table);
-    $courses = selectALL($table);
+    $studentsVIEW = selectALL($table);
     $teachers = selectALL($table);
     $groups = selectALL($table);
     $find_sql = '';
