@@ -29,7 +29,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <span class="timetable_block">Группы\Дата</span>
                         <?php for ($i = 0; $i < 6; $i++): ?>
 
-                            <span class="timetable_block"><?=$day_of_week[$i]?><br><?=$week[$i]?></span>
+                            <span class="timetable_block"><?=$day_of_week[$i]?><br><?=$next_week[$i]?></span>
                         <?endfor;?>
                     </div>
                     <div class="body_table">
@@ -39,11 +39,11 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                     <?=$group['number']?>
                                 </span>
                                 <?php
-                                $this_date = date('Y-m-d', strtotime('monday this week'));
+                                $this_date = date('Y-m-d', strtotime('monday next week'));
                                 ?>
                                 <?php foreach (callProc('proc_lesson_on_group', $group['id_group'] . ', "' .
-                                    date('Y-m-d', strtotime('monday this week')) . '","' .
-                                    date('Y-m-d', strtotime('saturday this week')) . '"') as $key => $lesson): ?>
+                                    date('Y-m-d', strtotime('monday next week')) . '","' .
+                                    date('Y-m-d', strtotime('saturday next week')) . '"') as $key => $lesson): ?>
                                     <?php while ($lesson['date'] !== $this_date): ?>
                                         <span class="timetable_block"></span>
                                         <?php
@@ -65,9 +65,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 </div>
                 <div class="control_buttons">
                     <a href="create.php" class="create">Создать занятие</a>
-                    <a href="" class="create">Посмотреть занятия</a>
-                    <a href="del_lessons.php" class="create">Удалить занятия</a>
-                    <a href="index_next.php" class="create">Следующая неделя</a>
+                    <a href="index.php" class="create">Текущая неделя</a>
                 </div>
             </div>
 
