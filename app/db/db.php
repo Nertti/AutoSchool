@@ -102,6 +102,7 @@ function selectOrder($table, $sort_sql, $params = [])
         }
     }
     $sql = $sql . " ORDER BY $sort_sql";
+//    tt($sql);
     $query = $pdo->prepare($sql);
     $query->execute();
     checkErrors($query);

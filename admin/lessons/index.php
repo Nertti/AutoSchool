@@ -66,8 +66,6 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 </div>
                 <div class="control_buttons">
                     <a href="create.php" class="create">Создать занятие</a>
-                    <a href="" class="create">Посмотреть занятия</a>
-                    <a href="del_lessons.php" class="create">Удалить занятия</a>
                     <a href="index_next.php" class="create">Следующая неделя</a>
                 </div>
             </div>
