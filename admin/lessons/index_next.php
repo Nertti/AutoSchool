@@ -14,7 +14,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
         <div class="container XXL">
             <div class="table_page">
                 <div class="title">Расписание</div>
-<!--                <div class="search">-->
+                <div class="search">
 <!--                    <label>-->
 <!--                        Поиск курсанта по фамилии:-->
 <!--                        <input type="text" name="search">-->

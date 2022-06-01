@@ -16,12 +16,12 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 <div class="title">Расписание</div>
 <!--                <div class="search">-->
 <!--                    <label>-->
-<!--                        Поиск курсанта по фамилии:-->
+<!--                        Занятия по фамилии преподавателя:-->
 <!--                        <input type="text" name="search">-->
 <!--                    </label>-->
 <!--                    <div class="control">-->
-<!--                        <button>Найти</button>-->
-<!--                        <button>Сбросить</button>-->
+<!--                        <button type="submit" value="select_lessons" name="find">Найти</button>-->
+<!--                        <button type="submit" value="select_lessons" name="reset">Сбросить</button>-->
 <!--                    </div>-->
 <!--                </div>-->
                 <div class="table">

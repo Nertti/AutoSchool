@@ -41,6 +41,10 @@ if (isset($_POST['find'])) {
         $teachers = selectFind($table, $find_sql, 'surname');
     }elseif ($table === 'select_groups'){
         $groupsVIEW = selectFind($table, $find_sql, 'number');
+    }elseif ($table === 'select_lessons'){
+
+
+        $groupsVIEW = selectFind($table, $find_sql, 'number');
     }
 }
 if (isset($_POST['reset'])) {
