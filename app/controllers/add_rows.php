@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             'date' => $date,
             'time' => $group_number['time'],
         ]);
-        $lessons_on_teach = callProc('proc_lessons_on_teacher',
+        $lessons_on_teach = callProc('proc_lesson_on_teach',
             $teacher . ', "' .
             date('Y-m-d', strtotime('monday this week', strtotime($date))) . '","' .
             date('Y-m-d', strtotime('saturday this week', strtotime($date))) . '"');

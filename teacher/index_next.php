@@ -13,30 +13,27 @@ include SITE_ROOT . '/app/include/redirectTeacher.php';
     <main class="main">
         <div class="container XXL">
             <div class="table_page">
-                <div class="title">Расписание</div>
+                <div class="title">Расписание на следующую неделю</div>
                 <div class="table">
                     <div class="head_table">
                         <span class="timetable_block">Группы\Дата</span>
                         <?php for ($i = 0; $i < 6; $i++): ?>
 
-                            <span class="timetable_block"><?=$day_of_week[$i]?><br><?=$week[$i]?></span>
+                            <span class="timetable_block"><?=$day_of_week[$i]?><br><?=$next_week[$i]?></span>
                         <?endfor;?>
                     </div>
                     <div class="body_table">
-                        <?php foreach ($groupsVIEW as $key => $group): ?>
+                        <?php foreach ($groups as $key => $group): ?>
                             <div class="row_table">
                                 <span class="timetable_block">
-                                    <?=$group['number']?><br>
-                                    <?=$group['time']?>
+                                    <?=$group['number']?>
                                 </span>
                                 <?php
-                                $this_date = date('Y-m-d', strtotime('monday this week'));
+                                $this_date = date('Y-m-d', strtotime('monday next week'));
                                 ?>
                                 <?php foreach (callProc('proc_lessons_on_teacher', $group['id_group'] . ', "' .
-                                    date('Y-m-d', strtotime('monday this week')) . '","' .
-                                    date('Y-m-d', strtotime('saturday this week')) . '", ' . $_SESSION['id_teacher']) as $key => $lesson): ?>
-
-
+                                    date('Y-m-d', strtotime('monday next week')) . '","' .
+                                    date('Y-m-d', strtotime('saturday next week')) . '", ' . $_SESSION['id_teacher']) as $key => $lesson): ?>
                                     <?php while ($lesson['date'] !== $this_date): ?>
                                         <span class="timetable_block"></span>
                                         <?php
@@ -57,7 +54,7 @@ include SITE_ROOT . '/app/include/redirectTeacher.php';
                     </div>
                 </div>
                 <div class="control_buttons">
-                    <a href="index_next.php" class="create">Следующая неделя</a>
+                    <a href="teacher.php" class="create">Текущая неделя</a>
                 </div>
             </div>
 

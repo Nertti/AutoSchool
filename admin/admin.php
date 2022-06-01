@@ -12,6 +12,10 @@ include SITE_ROOT  . '/app/include/redirectAdmin.php';
 <div class="wrapper">
     <?php include SITE_ROOT . '/app/include/header.php' ?>
     <main class="main">
+        <div class="container">
+            <div class="error_msg" style="text-align: right"><a href="<?=BASE_URL?>logout.php">Выход</a></div>
+
+        </div>
 
     </main>
     <footer>

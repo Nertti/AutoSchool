@@ -43,7 +43,7 @@ function userAuth($user)
         $_SESSION['login'] = $user['login'];
         $_SESSION['pass'] = $user['password'];
 
-        header('location: ' . 'teacher/teacher');
+        header('location: ' . 'teacher/teacher.php');
     }
 }
 

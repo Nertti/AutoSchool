@@ -42,8 +42,6 @@ if (isset($_POST['find'])) {
     }elseif ($table === 'select_groups'){
         $groupsVIEW = selectFind($table, $find_sql, 'number');
     }elseif ($table === 'select_lessons'){
-
-
         $groupsVIEW = selectFind($table, $find_sql, 'number');
     }
 }

@@ -159,6 +159,7 @@ function insertRow($table, $params)
     }
 
     $sql = "INSERT INTO `$table`($coll) VALUES ($mask)";
+//    tt($sql);
     $query = $pdo->prepare($sql);
     $query->execute($params);
 
