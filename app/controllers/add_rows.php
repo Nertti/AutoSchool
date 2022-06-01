@@ -113,6 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
     if ($table === 'groups') {
         $number = trim($_POST['number']);
         $category = trim($_POST['id_category']);
+        $time = trim($_POST['id_time_group']);
         $count = trim($_POST['count']);
         if ($number === '' || $category === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
@@ -128,6 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                 $post = [
                     'number' => $number,
                     'id_category' => $category,
+                    'id_time' => $time,
                     'count_students' => $count,
                 ];
                 $id = insertRow($table, $post);
@@ -143,12 +145,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $teacher = trim($_POST['id_teacher']);
         $cabinet = trim($_POST['id_cabinet']);
 
+        $group_number = selectOne('select_groups', ['id_group' => $group]);
         $this_lesson_group = selectOne('lessons', [
             'id_group' => $group,
             'date' => $date,
         ]);
-        $this_lesson = selectOne('lessons', [
+        $this_lesson_time = selectOne('select_lessons', [
             'date' => $date,
+            'time' => $group_number['time'],
         ]);
         $lessons_on_teach = callProc('proc_lessons_on_teacher',
             $teacher . ', "' .
@@ -163,6 +167,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } elseif (!$this_lesson_group == '') {
             $error = 'Урок у этой группы в этот день уже есть';
+        } elseif (!$this_lesson_time == '') {
+            $error = 'Урок в это время уже есть';
         } else {
             $post = [
                 'name' => $name,

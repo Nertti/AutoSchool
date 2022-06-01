@@ -11,6 +11,7 @@ $lessonsVIEW_order = selectOrder('select_lessons', 'date');//view
 $cabinets = selectALL('cabinets');
 $categories = selectALL('categories');
 $time_work = selectALL('time_work');
+$time_group = selectALL('time_group');
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_group'])) {
 

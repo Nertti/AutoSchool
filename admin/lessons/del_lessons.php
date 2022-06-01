@@ -34,7 +34,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                     echo mb_substr($lesson['name'], 0, 1) . '.';
                                     echo mb_substr($lesson['last_name'], 0, 1) . '.'; ?></span>
                                 <span class="control">
-                                   <a class="delete" onClick="return window.confirm('Удалить преподавателя из базы?');" href="?table=teachers&del_id=<?= $teacher['id_teacher']; ?>">Удалить</a>
+                                   <a class="delete" onClick="return window.confirm('Удалить занятие из расписания?');" href="?table=lessons&del_id=<?= $lesson['id_lesson']; ?>">Удалить</a>
                                 </span>
                             </div>
                         <?php endforeach; ?>

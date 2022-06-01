@@ -33,6 +33,15 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                             <?php endforeach; ?>
                         </select>
                     </label>
+                    <label>
+                        <span class="required">Тип группы:</span>
+                        <select name="id_time_group" required>
+                            <option value="" selected>'Выбрать'</option>
+                            <?php foreach ($time_group as $key => $time): ?>
+                                <option value="<?= $time['id_time_group']; ?>"><?= $time['name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
 
                     <div class="control_buttons">
                         <button class="btn" name="btn-add" type="submit" value="groups">Создать</button>

@@ -33,10 +33,11 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <?endfor;?>
                     </div>
                     <div class="body_table">
-                        <?php foreach ($groups as $key => $group): ?>
+                        <?php foreach ($groupsVIEW as $key => $group): ?>
                             <div class="row_table">
                                 <span class="timetable_block">
-                                    <?=$group['number']?>
+                                    <?=$group['number']?><br>
+                                    <?=$group['time']?>
                                 </span>
                                 <?php
                                 $this_date = date('Y-m-d', strtotime('monday this week'));
