@@ -169,6 +169,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $error = 'Урок у этой группы в этот день уже есть';
         } elseif (!$this_lesson_time == '') {
             $error = 'Урок в это время уже есть';
+        } elseif ($group_number['time'] == 'выходная' && date('D', strtotime($date)) !== date('D', strtotime('saturday this week', strtotime($date)))) {
+            $error = 'выбранная группа должна проводить занятия только в выходные';
+        } elseif ($group_number['time'] != 'выходная' && date('D', strtotime($date)) == date('D' , strtotime('saturday this week', strtotime($date)))) {
+            $error = 'выбранная группа должна проводить занятия только в будние';
         } else {
             $post = [
                 'name' => $name,

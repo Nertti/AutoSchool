@@ -64,3 +64,32 @@
 .arrow{
     font-family: "Oswald", sans-serif; /*пытался*/
 }
+.reports{
+    margin: 50px;
+}
+.reports_body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 50px 0;
+}
+.reports .reports_body .report{
+    max-width: 300px;
+    width: 100%;
+    background: #e15353;
+    color: #4c4c4c;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+.reports .reports_body .stat{
+    max-width: 100px;
+    width: 100%;
+    background: #e15353;
+    color: #4c4c4c;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 15px 0;
+}

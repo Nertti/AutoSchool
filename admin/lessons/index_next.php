@@ -14,7 +14,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
         <div class="container XXL">
             <div class="table_page">
                 <div class="title">Расписание</div>
-                <div class="search">
+<!--                <div class="search">-->
 <!--                    <label>-->
 <!--                        Поиск курсанта по фамилии:-->
 <!--                        <input type="text" name="search">-->
@@ -33,10 +33,11 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <?endfor;?>
                     </div>
                     <div class="body_table">
-                        <?php foreach ($groups as $key => $group): ?>
+                        <?php foreach ($groupsVIEW as $key => $group): ?>
                             <div class="row_table">
                                 <span class="timetable_block">
-                                    <?=$group['number']?>
+                                    <?=$group['number']?><br>
+                                    <?=$group['time']?>
                                 </span>
                                 <?php
                                 $this_date = date('Y-m-d', strtotime('monday next week'));
@@ -65,7 +66,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 </div>
                 <div class="control_buttons">
                     <a href="create.php" class="create">Создать занятие</a>
-                    <a href="del_lessons.php" class="create">Удалить занятия</a>
+                    <a href="del_lessons.php" class="create">Посмотреть занятия</a>
                     <a href="index.php" class="create">Текущая неделя</a>
                 </div>
             </div>

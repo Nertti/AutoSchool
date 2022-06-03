@@ -7,7 +7,7 @@ $groups = selectALL('groups');
 $groupsVIEW = selectALL('select_groups');//view
 $lessons = selectALL('lessons');
 $lessonsVIEW = selectALL('select_lessons');//view
-$lessonsVIEW_order = selectOrder('select_lessons', 'date' , [date('Y-m-d', strtotime('monday next week')) => 'date']);//view
+$lessonsVIEW_order = selectOrder('select_lessons', 'date' , [date('Y-m-d', strtotime('next day')) => 'date']);//view
 $cabinets = selectALL('cabinets');
 $categories = selectALL('categories');
 $time_work = selectALL('time_work');
