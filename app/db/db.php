@@ -221,6 +221,24 @@ function callProc ($nameProc, $param=[])
 
     return $query->fetchAll();
 }
+function report ($table = '')
+{
+    global $pdo;
+    $sql = '';
+    if($table == 'students'){
+        $sql = "SELECT COUNT(s.id_student) as 'count' FROM `students` s";
+    } elseif ($table == 'teachers') {
+        $sql = "SELECT COUNT(s.id_teacher) as 'count' FROM `teachers` s";
+    } elseif ($table == 'groups') {
+        $sql = "SELECT COUNT(s.id_group) as 'count' FROM `groups` s";
+    }
+    $query = $pdo->prepare($sql);
+    $query->execute();
+
+    checkErrors($query);
+
+    return $query->fetch();
+}
 
 function sort_link_bar($title, $a, $b, $table)
 {

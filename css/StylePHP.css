@@ -76,20 +76,26 @@
 .reports .reports_body .report{
     max-width: 300px;
     width: 100%;
-    background: #e15353;
+    background: #bbbbbb;
     color: #4c4c4c;
     display: flex;
     align-content: center;
     justify-content: center;
     padding: 40px 0;
 }
-.reports .reports_body .stat{
-    max-width: 100px;
-    width: 100%;
-    background: #e15353;
-    color: #4c4c4c;
+.reports_stat{
+    padding: 30px 20px;
+    font-size: 25px;
     display: flex;
-    align-content: center;
-    justify-content: center;
-    padding: 15px 0;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.reports_stat .stat{
+    text-decoration: underline;
+    color: #c92334;
+}
+.reports_stat .stat_info{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
 }

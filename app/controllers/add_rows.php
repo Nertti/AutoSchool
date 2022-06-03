@@ -154,6 +154,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             'date' => $date,
             'time' => $group_number['time'],
         ]);
+        $this_lesson_time_teacher = selectOne('select_lessons', [
+            'date' => $date,
+            'time' => $group_number['time'],
+            'id_teacher' => $teacher,
+        ]);
+        $this_lesson_time_cabinet = selectOne('select_lessons', [
+            'date' => $date,
+            'time' => $group_number['time'],
+            'id_cabinet' => $cabinet,
+        ]);
         $lessons_on_teach = callProc('proc_lesson_on_teach',
             $teacher . ', "' .
             date('Y-m-d', strtotime('monday this week', strtotime($date))) . '","' .
@@ -167,8 +177,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } elseif (!$this_lesson_group == '') {
             $error = 'Урок у этой группы в этот день уже есть';
-        } elseif (!$this_lesson_time == '') {
-            $error = 'Урок в это время уже есть';
+        }elseif (!$this_lesson_time_teacher == '') {
+            $error = 'Урок у этого преподавателя в это время уже есть';
+        }elseif (!$this_lesson_time_cabinet == '') {
+            $error = 'Урок в кабинета в это время уже есть';
         } elseif ($group_number['time'] == 'выходная' && date('D', strtotime($date)) !== date('D', strtotime('saturday this week', strtotime($date)))) {
             $error = 'выбранная группа должна проводить занятия только в выходные';
         } elseif ($group_number['time'] != 'выходная' && date('D', strtotime($date)) == date('D' , strtotime('saturday this week', strtotime($date)))) {

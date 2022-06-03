@@ -19,3 +19,6 @@ include SITE_ROOT . '/app/controllers/add_rows.php';
 include SITE_ROOT . '/app/controllers/del.php';
 include SITE_ROOT . '/app/controllers/edit.php';
 include SITE_ROOT . '/app/controllers/timetable.php';
+///////
+include SITE_ROOT . '/app/PHPExcel/PHPExcel.php';
+include SITE_ROOT . '/app/controllers/PHPExcel_control.php';
