@@ -29,26 +29,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $error = 'Введите верный паспорт';
         } elseif ($check_phone['phone'] === $phone) {
             $error = 'Такой телефон уже зарегистрирован';
-        } else {
-            if ($passport != '') {
-                $check_passport_student = selectOne($table, ['passport' => $passport]);
-                if (!$check_passport_student == '') {
-                    $error = 'Такой паспорт уже зарегистрирован';
-                }
+        } elseif ($passport != '') {
+            $check_passport_teacher = selectOne('teachers', ['passport' => $passport]);
+            if (!$check_passport_teacher == '') {
+                $error = 'Такой паспорт уже зарегистрирован';
+            } else {
+                $post = [
+                    'name' => $name,
+                    'surname' => $surname,
+                    'last_name' => $last_name,
+                    'phone' => $phone,
+                    'passport' => $passport,
+                    'date_start' => $today,
+                ];
+                $id = insertRow($table, $post);
+                header('location: ' . 'index.php');
             }
-            if ($passport === '') {
-                $passport = 'NULL';
-            }
-            $post = [
-                'name' => $name,
-                'surname' => $surname,
-                'last_name' => $last_name,
-                'phone' => $phone,
-                'passport' => $passport,
-                'date_start' => $today,
-            ];
-            $id = insertRow($table, $post);
-            header('location: ' . 'index.php');
         }
 
 
@@ -90,22 +86,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                 $check_passport_teacher = selectOne('teachers', ['passport' => $passport]);
                 if (!$check_passport_teacher == '') {
                     $error = 'Такой паспорт уже зарегистрирован';
+                } else {
+                    $pass = password_hash($pass, PASSWORD_DEFAULT);
+                    $post = [
+                        'name' => $name,
+                        'surname' => $surname,
+                        'last_name' => $last_name,
+                        'login' => $login,
+                        'password' => $pass,
+                        'phone' => $phone,
+                        'passport' => $passport,
+                        'id_time_work' => $id_time_work,
+                    ];
+                    $id = insertRow($table, $post);
+                    header('location: ' . 'index.php');
                 }
-            } else {
-
-                $pass = password_hash($pass, PASSWORD_DEFAULT);
-                $post = [
-                    'name' => $name,
-                    'surname' => $surname,
-                    'last_name' => $last_name,
-                    'login' => $login,
-                    'password' => $pass,
-                    'phone' => $phone,
-                    'passport' => $passport,
-                    'id_time_work' => $id_time_work,
-                ];
-                $id = insertRow($table, $post);
-                header('location: ' . 'index.php');
             }
         }
     }
@@ -171,19 +166,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
 
         $time = callProc('proc_timeteacher', $teacher);
         $timeOne = $time['0'];
-        if (count($lessons_on_teach)*2 > $timeOne['time']) {
+        if (count($lessons_on_teach) * 2 > $timeOne['time']) {
             $error = 'Количество часов в неделю преподавателя превышено';
         } elseif ($group === '' || $date == '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } elseif (!$this_lesson_group == '') {
             $error = 'Урок у этой группы в этот день уже есть';
-        }elseif (!$this_lesson_time_teacher == '') {
+        } elseif (!$this_lesson_time_teacher == '') {
             $error = 'Урок у этого преподавателя в это время уже есть';
-        }elseif (!$this_lesson_time_cabinet == '') {
+        } elseif (!$this_lesson_time_cabinet == '') {
             $error = 'Урок в кабинета в это время уже есть';
+        } elseif ($date <= date('Y-m-d')) {
+            $error = 'Нельзя назначить урок в предыдущую дату';
         } elseif ($group_number['time'] == 'выходная' && date('D', strtotime($date)) !== date('D', strtotime('saturday this week', strtotime($date)))) {
             $error = 'выбранная группа должна проводить занятия только в выходные';
-        } elseif ($group_number['time'] != 'выходная' && date('D', strtotime($date)) == date('D' , strtotime('saturday this week', strtotime($date)))) {
+        } elseif ($group_number['time'] != 'выходная' && date('D', strtotime($date)) == date('D', strtotime('saturday this week', strtotime($date)))) {
             $error = 'выбранная группа должна проводить занятия только в будние';
         } else {
             $post = [

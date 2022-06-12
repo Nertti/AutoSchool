@@ -20,7 +20,7 @@
                             <li><a href="<?php echo BASE_URL ?>admin/admin.php">Администратор</a></li>
                         </ul>
                     <?php elseif (isset($_SESSION['id_teacher'])): ?>
-                        <a><?=$_SESSION['surname']?></a>
+                        <span><?=$_SESSION['surname']?> <?=$_SESSION['name']?> <?=$_SESSION['last_name']?></span>  <span style="width: 100px"> </span>
                         <a href="<?= BASE_URL ?>logout.php">Выход</a>
                     <?php endif; ?>
                 </div>

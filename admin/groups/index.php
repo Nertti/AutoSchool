@@ -46,7 +46,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 </div>
                 <div class="control_buttons">
                     <a href="create.php" class="create">Создать</a>
-                    <a class="create">Назад</a>
+                    <a href="javascript:history.go(-1)" class="create">Назад</a>
                 </div>
             </div>
 

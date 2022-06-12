@@ -40,6 +40,14 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         Логин:
                         <input type="text" name="login" value="<?= $teacher['login'] ?>" required>
                     </label>
+                    <label>
+                        <span class="required">Ставка в неделю:</span>
+                        <select name="id_time_work" required>
+                            <?php foreach ($time_work as $key => $time): ?>
+                                <option <?php if($time['id_time_work'] == $teacher['id_time_work']) {echo 'selected';}  ?> value="<?= $time['id_time_work']; ?>"><?= $time['name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
                     <div class="control_buttons">
                         <button class="btn" name="btn-update" type="submit" value="teachers">Изменить</button>
                         <a href="index.php">Назад</a>

@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         $last_name = trim($_POST['last_name']);
         $login = trim($_POST['login']);
         $passport = trim($_POST['passport']);
+        $id_time_work = trim($_POST['id_time_work']);
         $phone = str_replace([' ', '(', ')', '-',], '', trim($_POST['phone']));
         if ($name === '' || $surname === '' || $login === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля';
@@ -77,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
                 'login' => $login,
                 'phone' => $phone,
                 'passport' => $passport,
+                'id_time_work' => $id_time_work,
             ];
             updateRow('teachers', $id, $post);
             header('location: ' . 'index.php');
@@ -88,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         $id = 'id_group = ' . $_GET['id_edit'];
         $number = trim($_POST['number']);
         $category = trim($_POST['id_category']);
+        $time = trim($_POST['id_time_group']);
         $count = trim($_POST['count']);
         if ($number === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
@@ -97,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
             $post = [
                 'number' => $number,
                 'id_category' => $category,
+                'id_time' => $time,
                 'count_students' => $count,
             ];
             updateRow('groups', $id, $post);

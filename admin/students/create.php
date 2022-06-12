@@ -33,8 +33,8 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <input type="text" name="phone" placeholder="+375 (xx) xxx-xx-xx" value="<?= $phone ?>" required>
                     </label>
                     <label>
-                        Паспорт:
-                        <input type="text" name="passport" placeholder="AAxxxxxxx" value="<?= $passport ?>">
+                        <span class="required">Паспорт:</span>
+                        <input type="text" name="passport" placeholder="AAxxxxxxx" value="<?= $passport ?>" required>
                     </label>
                     <div class="control_buttons">
                         <button class="btn" name="btn-add" type="submit" value="students">Создать</button>

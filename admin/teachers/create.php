@@ -33,8 +33,8 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <input type="text" name="phone" value="<?= $phone ?>" required>
                     </label>
                     <label>
-                        Паспорт:
-                        <input type="text" name="passport" value="<?= $passport ?>">
+                        <span class="required">Паспорт:</span>
+                        <input type="text" name="passport" value="<?= $passport ?>"required>
                     </label>
                     <label>
                         <span class="required">Логин:</span>

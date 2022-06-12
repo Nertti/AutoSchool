@@ -28,7 +28,15 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <span class="required">Категория:</span>
                         <select name="id_category" required>
                             <?php foreach ($categories as $key => $category): ?>
-                                <option value="<?= $category['id_category']; ?>"><?= $category['name']; ?></option>
+                                <option <?php if($category['id_category'] == $group['id_category']) {echo 'selected';}  ?> value="<?= $category['id_category']; ?>"><?= $category['name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+                    <label>
+                        <span class="required">Тип группы:</span>
+                        <select name="id_time_group" required>
+                            <?php foreach ($time_group as $key => $time): ?>
+                                <option <?php if($time['id_time_group'] == $group['id_time']) {echo 'selected';}  ?> value="<?= $time['id_time_group']; ?>"><?= $time['name']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </label>
