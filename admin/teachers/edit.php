@@ -34,7 +34,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     </label>
                     <label>
                         Паспорт:
-                        <input type="text" name="passport" value="<?= $teacher['passport'] ?>">
+                        <input type="text" name="passport" value="<?= $teacher['passport'] ?>" required>
                     </label>
                     <label>
                         Логин:

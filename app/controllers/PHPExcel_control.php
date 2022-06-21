@@ -172,23 +172,26 @@ if (isset($_GET['report_3'])) {
     $activ_sheet->setTitle('Посещаемость учащихся');
 
     $activ_sheet->getColumnDimension('A')->setWidth(40);
-    $activ_sheet->getColumnDimension('B')->setWidth(35);
+    $activ_sheet->getColumnDimension('B')->setWidth(45);
+    $activ_sheet->getColumnDimension('С')->setWidth(45);
 
     $activ_sheet->getRowDimension('1')->setRowHeight(20);
 
     $activ_sheet->setCellValueByColumnAndRow(0, 1, 'Посещаемость учащихся за предыдущий месяц');
     $activ_sheet->setCellValueByColumnAndRow(0, 2, 'Фамилия И.О.');
     $activ_sheet->setCellValueByColumnAndRow(1, 2, 'Дата начала обучения');
+    $activ_sheet->setCellValueByColumnAndRow(2, 2, 'Номер группы');
 
     $today = new DateTime('now');
     $month = $today->modify('-1 month')->format('F');
-    $students = selectALL('students');
+    $students = selectALL('select_students');
     $count = 3;
 
 
     foreach ($students as $key => $student) {
         $activ_sheet->setCellValue("A$count", $student['surname'] . ' ' . $student['name'] . ' ' . $student['last_name']);
         $activ_sheet->setCellValue("B$count", $student['date_start']);
+        $activ_sheet->setCellValue("C$count", $student['number']);
         $count++;
     }
 

@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $error = 'Введите верный телефон';
         } elseif (!preg_match($preg_passport, $passport) && $passport != '') {
             $error = 'Введите верный паспорт';
-        } elseif ($check_phone['phone'] === $phone) {
+        } elseif ($check_phone['phone'] !== '' or $check_phone['phone'] == false) {
             $error = 'Такой телефон уже зарегистрирован';
         } elseif ($passport != '') {
-            $check_passport_teacher = selectOne('teachers', ['passport' => $passport]);
+            $check_passport_teacher = selectOne($table, ['passport' => $passport]);
             if (!$check_passport_teacher == '') {
                 $error = 'Такой паспорт уже зарегистрирован';
             } else {

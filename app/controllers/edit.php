@@ -34,15 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         } elseif (!preg_match($preg_passport, $passport) && $passport != '') {
             $error = 'Введите верный паспорт';
         } else {
-            $post = [
-                'name' => $name,
-                'surname' => $surname,
-                'last_name' => $last_name,
-                'phone' => $phone,
-                'passport' => $passport,
-            ];
-            updateRow('students', $id, $post);
-            header('location: ' . 'index.php');
+            $check_passport = selectOne($table, ['passport' => $passport]);
+            if ($check_passport['id_student'] === $_GET['id_edit'] or $check_passport == '') {
+                $post = [
+                    'name' => $name,
+                    'surname' => $surname,
+                    'last_name' => $last_name,
+                    'phone' => $phone,
+                    'passport' => $passport,
+                ];
+                updateRow('students', $id, $post);
+                header('location: ' . 'index.php');
+            } else {
+                $error = 'Паспорт уже существует в базе!';
+            }
         }
 
     }
@@ -71,17 +76,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         } elseif (!preg_match($preg_passport, $passport) && $passport != '') {
             $error = 'Введите верный паспорт';
         } else {
-            $post = [
-                'name' => $name,
-                'surname' => $surname,
-                'last_name' => $last_name,
-                'login' => $login,
-                'phone' => $phone,
-                'passport' => $passport,
-                'id_time_work' => $id_time_work,
-            ];
-            updateRow('teachers', $id, $post);
-            header('location: ' . 'index.php');
+            $check_passport = selectOne($table, ['passport' => $passport]);
+            if ($check_passport['id_teacher'] == $_GET['id_edit'] or $check_passport == '') {
+                $post = [
+                    'name' => $name,
+                    'surname' => $surname,
+                    'last_name' => $last_name,
+                    'login' => $login,
+                    'phone' => $phone,
+                    'passport' => $passport,
+                    'id_time_work' => $id_time_work,
+                ];
+                updateRow('teachers', $id, $post);
+                header('location: ' . 'index.php');
+            } else {
+                $error = 'Паспорт уже существует в базе!';
+            }
         }
 
     }
@@ -115,9 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['add_student_id'])) {
     $id_group = $_GET['id_group'];
     $group = selectOne('groups', ['id_group' => $id_group]);
 //    $students_count = callProc('proc_student', $_GET['id_group']);
-    if(count($students_in_group) >= $group['count_students']){
+    if (count($students_in_group) >= $group['count_students']) {
         $error = 'Лимит учащихся ' . $group['count_students'];
-    }else{
+    } else {
         $post = [
             'id_group' => $_GET['id_group'],
         ];
@@ -126,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['add_student_id'])) {
     }
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_student_id'])) {
-    $id =  'id_student = ' . $_GET['del_student_id'];
+    $id = 'id_student = ' . $_GET['del_student_id'];
     $post = [
         'id_group' => 'NULL',
     ];
